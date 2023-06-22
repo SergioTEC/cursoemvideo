@@ -18,9 +18,14 @@ section {
     text-align: center;
 }
 
+div {
+    padding: 8px;
+}
+
 #imagem {
     width: 260px;
     border-radius: 50%;
+    box-shadow: 6px 6px 11px rgba(0, 0, 0, 0.545);
 }
 
 footer {
