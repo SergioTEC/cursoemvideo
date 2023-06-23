@@ -7,7 +7,7 @@ function carregar(){
     
     mostraHoras.innerHTML = `<strong>Agora são ${hora} horas.</strong>`
 
-    if(hora >= 0 & hora < 12){
+    if(hora >= 0 && hora < 12){
         imagem.src = "/aula012ex/ex01/contents/manha01.jpg"
         document.body.style.background = '#CCC870'
     } else if(hora >= 12 & hora < 18){
