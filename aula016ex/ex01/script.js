@@ -12,7 +12,7 @@ function isNumero(n){
     }
 }
 
-//Verifica se o numero esta na lista
+//Verifica se o numero esta no Array
 function inLista(n, l){
     if (l.indexOf(Number(n)) != -1){
         return true
