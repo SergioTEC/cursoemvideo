@@ -1,51 +1,69 @@
-var botaoAdicionar = document.getElementById('adicionar')
-botaoAdicionar.addEventListener('click', adicionar)
-var armazenaValor = []
+var numero = document.getElementById('numero')
+var lista = document.getElementById('sLista')
+var resultado = document.getElementById('resultado')
+var valores = []
 
-function adicionar(){
-    var numeroTxt = document.getElementById('numeroTxt')
-    var numero = Number(numeroTxt.value)
-    var select = document.getElementById('select')
-    var resultado = document.getElementById('resultado')
-    
-    if(numero >= 1 && numero <= 100){
+//Verifica se o numero esta de acordo com o estipulado
+function isNumero(n){
+    if (Number(n) >= 1 && Number(n) <= 100){
+        return true
+    } else {
+        return false
+    }
+}
 
-        //Limpa resultado ao adicionar um novo numero
-        resultado.innerHTML = ''
+//Verifica se o numero esta na lista
+function inLista(n, l){
+    if (l.indexOf(Number(n)) != -1){
+        return true
+    } else {
+        return false
+    }
+}
 
-        //Manipulação do Select/Option
-        var option = document.createElement('option')
-        option.text = `Valor ${numero} adicionado.`
-        option.value = numero
-        select.appendChild(option)
-
+function adicionar() {
+    if(isNumero(numero.value) && !inLista(numero.value, valores)){
         //Manipulação do Array
-        armazenaValor.push(option.value)
+        valores.push(Number(numero.value))
 
+        //Manipulação do Select
+        var item = document.createElement('option')
+        item.text += `Valor ${numero.value} adicionado.`
+        lista.appendChild(item)
+        resultado.innerHTML = ''
     } else {
         window.alert('Valor invalido ou já encontrado na lista')
     }
-
+    numero.value = ''
+    numero.focus()
 }
-
-var botaoFinalizar = document.getElementById('finalizar')
-botaoFinalizar.addEventListener('click', finalizar)
 
 function finalizar(){
 
-    resultado.innerHTML = `Ao todo, temos ${armazenaValor.length} numeros cadastrados.`
-
-    /*
-    if(Select vazio){
+    if(valores.length == 0){
         window.alert('Adicione valores antes de finalizar')
-    } else{
+    } else {
+        //Verifica o total de numeros dentro do Array
+        let total = valores.length
+        let maiorNumero = valores[0] 
+        let menorNumero = valores[0]
+        let soma = 0
+        let media = 0
 
-        //Mostra o resultado
-        resultado.innerHTML = 'Ao todo, temos Array[all] numeros cadastrados.'
-        resultado.innerHTML = 'O maior valor informado foi o Array[maior].'
-        resultado.innerHTML = 'O menor valor informado foi o Array[menor].'
-        resultado.innerHTML = 'Somando todos os valores, temos Soma=Array[All]'
-        resultado.innerHTML = 'A media dos valores digitados é media=Array[All]/Qtd'
+        for(let pos in valores) {
+            soma += valores[pos]
+            if(valores[pos] > maiorNumero)
+                maiorNumero = valores[pos]
+            if(valores[pos] < menorNumero)
+                menorNumero = valores[pos]
+        }
+        media = soma / valores.length
+
+        resultado.innerHTML = ''
+        resultado.innerHTML += `<p>Ao todo, temos ${total} numeros cadastrados.</p>`
+        resultado.innerHTML += `<p>O maior valor informado foi ${maiorNumero}.</p>`
+        resultado.innerHTML += `<p>O menor valor informado foi ${menorNumero}.</p>`
+        resultado.innerHTML += `<p>Somando todos os valores, temos ${soma}.</p>`
+        resultado.innerHTML += `<p>A media dos valores digitados é ${media.toFixed(2)}</p>.`
     }
-    */
 }

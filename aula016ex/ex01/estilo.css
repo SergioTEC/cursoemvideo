@@ -17,6 +17,10 @@ section {
     box-shadow: 6px 6px 11px rgba(0, 0, 0, 0.545);
 }
 
+select#sLista {
+    width: 150px;
+}
+
 footer {
     color: white;
     text-align: center;
