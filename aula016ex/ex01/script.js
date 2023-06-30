@@ -43,7 +43,7 @@ function finalizar(){
     if(valores.length == 0){
         window.alert('Adicione valores antes de finalizar')
     } else {
-        //Verifica o total de numeros dentro do Array
+        //Manipulação do Array
         let total = valores.length
         let maiorNumero = valores[0] 
         let menorNumero = valores[0]
